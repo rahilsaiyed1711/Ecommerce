@@ -33,9 +33,8 @@ const upload = multer({ storage: storage });
 app.use("/images", express.static('upload/images'));
 
 // Set the base URL depending on the environment
-const baseUrl = req.hostname === 'localhost' 
-  ? `http://localhost:${port}` 
-  : 'https://ecommerce-backend-38z9.onrender.com';
+// Dynamic base URL based on the request
+const baseUrl = 'https://ecommerce-backend-38z9.onrender.com';
 
 // Upload endpoint for images
 app.post("/upload", upload.single('product'), (req, res) => {
@@ -44,6 +43,7 @@ app.post("/upload", upload.single('product'), (req, res) => {
         image_url: `${baseUrl}/images/${req.file.filename}`
     });
 });
+
 
 // Product schema
 const Product = mongoose.model("Product", {
