@@ -9,7 +9,14 @@ const { type } = require("os");
 const { log } = require("console");
 const port = process.env.PORT || 4000;
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+    (
+    origin : ["https://deploy-mern-1whq.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true
+    )
+   
+));
 
 // DB connection with MongoDB 
 mongoose.connect("mongodb+srv://rahilsaiyed1711:k9fidyxTiQb0aCSK@cluster0.8lpp2.mongodb.net/ecommerce");
